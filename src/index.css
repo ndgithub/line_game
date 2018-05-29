@@ -1,0 +1,67 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+  padding: 4px;
+}
+
+.main_container {
+max-width: 960px;
+width: 100%;
+background: #cccccc;
+margin: auto;
+
+}
+.record_container {
+
+}
+
+.record_entry {
+	text-align: center;
+	display: inline-block;
+	padding: 8px;
+}
+
+
+.lines_containers {
+	border: 1px solid #ffff00;
+	text-align: center;
+	display: inline-block;
+}
+
+
+.ref_line_container {
+	border: 1px solid #00ff00;
+	text-align: center;
+}
+
+.guess_line_container {
+	color: #cccccc;
+	border: 1px solid #0000ff;
+}
+
+.ref_line {
+background: black;
+text-align: center;
+
+}
+
+.guess_line {
+background: black;
+text-align: center;
+}
+
+
+.error_container {
+	color: #ff0000;
+}
+
+.guess_list {
+	display: inline-block;
+	border: 1px solid #000000;
+}
+
+.counter {
+	display: inline-block;
+		border: 1px solid #ff0000;
+}
