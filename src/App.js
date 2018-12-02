@@ -24,37 +24,39 @@ class App extends Component {
     console.log(this.state.unknownLengthPx * this.state.unitsPerPx)
     return (
       <div className="App">
+      <div className="title">MEASURE</div>
         <div className="main_container" id="main_container">
-          <div className="lines_containers">
-            <div className="ref_line_container" style={{width: this.state.refLengthPx}}>
-              <p>100</p>
-              <div className="ref_line" style={{width: this.state.refLengthPx,height:"20px"}}></div>
-            </div>
-            <div className="guess_line_container">
-              <p>{this.state.unknownLengthUnits}</p>
-              <div className="guess_line" style={{width:(this.state.unknownLengthUnits * this.state.pxPerUnit) + "px", height:"20px"}}></div>
-            </div>
-          </div>
-          
-          <input type="text" id="guess_input" placeholder="1 to 100" value={this.state.controls_inputValue} onChange={this.handleChange} onKeyPress ={this.handleKeyPress}  disabled = {this.state.controls_showInput ? "" : "disabled" } />
-          <div className="error_container">{this.state.controls_showInputError && <span>Enter a number between 1 and 100</span>}</div>
-          <div className="guess_button_container">{this.state.controls_showGuessButton && <button id ="guess_button" onClick={this.enterGuess}>Guess</button>}</div>
-          <div>
-          {this.state.controls_showPlayAgain && <button onClick={this.onPlayAgain}>Play Again?</button>}
-          </div>
-            <Guesses guessList = {this.state.guessList}/>
-        </div>
+              <div className="top_scale"><div className="left">0</div><div className="right">100</div></div>
+              <div className="ref_line" style={{width: this.state.refLengthPx}}>
+                  <div className="guess_line" style={{width:(this.state.unknownLengthUnits * this.state.pxPerUnit) + "px"}}></div>
+              </div>
+              <div className="bottom_scale" style={{width:(this.state.unknownLengthUnits * this.state.pxPerUnit + 5) + "px"}}>x</div>
+            
+            
+         <div className="input_container">
+           <span>x = </span>
+           <input type="text" id="input" value={this.state.controls_inputValue} onChange={this.handleChange} onKeyPress ={this.handleKeyPress}  disabled = {this.state.controls_showInput ? "" : "disabled" } />
+         </div>
+         <div className="error_container">{this.state.controls_showInputError && <span>Enter a number between 1 and 100</span>}</div>
+         <div className="guess_button_container">{this.state.controls_showGuessButton && <button id ="guess_button" onClick={this.enterGuess}>Guess</button>}</div>
+         <div>
+         {this.state.controls_showPlayAgain && <button onClick={this.onPlayAgain}>Play Again?</button>}
+         </div>
+        <Guesses guessList = {this.state.guessList}/>
+      </div>
+
+
+        
       </div>
     );
   }
 
   componentDidMount() {
-    console.log('asdf',document.getElementById("main_container").offsetWidth)
     this.setState(
       {
         refLengthPx: document.getElementById("main_container").offsetWidth,
         pxPerUnit: document.getElementById("main_container").offsetWidth/100,
-        unknownLengthUnits: this.getNewLine(),
+        unknownLengthUnits: this.getNewLineLength(),
       }
     );
   }
@@ -67,7 +69,7 @@ class App extends Component {
                   controls_showInput:true});
   }
 
-  getNewLine = () => {
+  getNewLineLength = () => {
     return Math.floor((Math.random() * 100) + 1);
   }
 
@@ -87,15 +89,21 @@ class App extends Component {
       this.setState({controls_showInputError:true})    }
   }
 
-
+  validInput = (number) => {
+    if (number > 0 && number <= 100 && number % 1 === 0) {
+      return true;
+    } else {
+      return false;
+    }
+  }
   enterGuess = () => {
-    let input = document.getElementById("guess_input").value;
-    if (input > 0 && input <= 100 && input % 1 === 0) {
+    let input = document.getElementById("input").value;
+    if (this.validInput(input)) {
       this.setState(
         {
-            guessList: this.state.guessList.concat([{
-              actual: this.state.unknownLengthUnits,
-              userGuess: input,
+          guessList: this.state.guessList.concat([{
+          actual: this.state.unknownLengthUnits,
+          userGuess: input,
           }]),
           controls_inputValue:''}
         ,this.reset);
@@ -105,17 +113,18 @@ class App extends Component {
   }
 
   reset = () => {
-    console.log('hey')
+    console.log('resetting')
     if (this.state.guessList.length === 5 ) {
       this.setState({controls_showPlayAgain:true,
                      controls_showGuessButton:false,
                      controls_showInput:false});
-    }
+    } else {
     this.setState({
-        unknownLengthUnits: this.getNewLine(),
+        unknownLengthUnits: this.getNewLineLength(),
         refLengthPx: document.getElementById("main_container").offsetWidth,
         pxPerUnit: document.getElementById("main_container").offsetWidth/100,
     })
+  }
   }
 
   
