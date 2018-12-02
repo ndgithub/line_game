@@ -8,8 +8,8 @@ class App extends Component {
     super();
     this.state = {
       refLengthPx:0,
-      pxPerUnit:0,
-      unknownLengthUnits:0,
+      pxPerGameUnit:0,
+      unknownLengthInUnits:0,
       guessList:[],
       controls_inputValue:'',
       controls_showInput:true,
@@ -28,14 +28,14 @@ class App extends Component {
         <div className="main_container" id="main_container">
               <div className="top_scale"><div className="left">0</div><div className="right">100</div></div>
               <div className="ref_line" style={{width: this.state.refLengthPx}}>
-                  <div className="guess_line" style={{width:(this.state.unknownLengthUnits * this.state.pxPerUnit) + "px"}}></div>
+                  <div className="guess_line" style={{width:(this.state.unknownLengthInUnits * this.state.pxPerGameUnit) + "px"}}></div>
               </div>
-              <div className="bottom_scale" style={{width:(this.state.unknownLengthUnits * this.state.pxPerUnit + 5) + "px"}}>x</div>
+              <div className="bottom_scale" style={{width:(this.state.unknownLengthInUnits * this.state.pxPerGameUnit + 5) + "px"}}>x</div>
             
             
          <div className="input_container">
            <span>x = </span>
-           <input type="text" id="input" value={this.state.controls_inputValue} onChange={this.handleChange} onKeyPress ={this.handleKeyPress}  disabled = {this.state.controls_showInput ? "" : "disabled" } />
+           <input type="text" id="input" value={this.state.controls_inputValue} onChange={this.handleInputChange} onKeyPress ={this.handleKeyPress}  disabled = {this.state.controls_showInput ? "" : "disabled" } />
          </div>
          <div className="error_container">{this.state.controls_showInputError && <span>Enter a number between 1 and 100</span>}</div>
          <div className="guess_button_container">{this.state.controls_showGuessButton && <button id ="guess_button" onClick={this.enterGuess}>Guess</button>}</div>
@@ -50,17 +50,23 @@ class App extends Component {
       </div>
     );
   }
-
+  handleWindowResize = () => {
+    this.setState({
+      refLengthPx: document.getElementById("main_container").offsetWidth,
+      pxPerGameUnit: document.getElementById("main_container").offsetWidth/100
+    });
+  }
   componentDidMount() {
     this.setState(
       {
         refLengthPx: document.getElementById("main_container").offsetWidth,
-        pxPerUnit: document.getElementById("main_container").offsetWidth/100,
-        unknownLengthUnits: this.getNewLineLength(),
+        pxPerGameUnit: document.getElementById("main_container").offsetWidth/100,
+        unknownLengthInUnits: this.getNewLineLength(),
       }
     );
+    window.addEventListener("resize", this.handleWindowResize);;
   }
-
+  
   onPlayAgain = () => {
     this.setState({guessList:[],
                   inputValue:'',
@@ -78,19 +84,19 @@ class App extends Component {
       this.enterGuess();
     }
   }
-
-  handleChange = (event) => {
+  
+  handleInputChange = (event) => {
     console.log(event.keyCode);
     let input = event.target.value;
     this.setState({controls_inputValue: input})
-    if ((input > 0 && input <= 100 && input % 1 === 0) || (input.length === 0)) {
+    if (this.validInput(input)) {
       this.setState({controls_showInputError:false})
     } else {
       this.setState({controls_showInputError:true})    }
   }
 
   validInput = (number) => {
-    if (number > 0 && number <= 100 && number % 1 === 0) {
+    if (number >= 0 && number <= 100 && number % 1 === 0) {
       return true;
     } else {
       return false;
@@ -102,7 +108,7 @@ class App extends Component {
       this.setState(
         {
           guessList: this.state.guessList.concat([{
-          actual: this.state.unknownLengthUnits,
+          actual: this.state.unknownLengthInUnits,
           userGuess: input,
           }]),
           controls_inputValue:''}
@@ -120,9 +126,9 @@ class App extends Component {
                      controls_showInput:false});
     } else {
     this.setState({
-        unknownLengthUnits: this.getNewLineLength(),
+        unknownLengthInUnits: this.getNewLineLength(),
         refLengthPx: document.getElementById("main_container").offsetWidth,
-        pxPerUnit: document.getElementById("main_container").offsetWidth/100,
+        pxPerGameUnit: document.getElementById("main_container").offsetWidth/100,
     })
   }
   }
