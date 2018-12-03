@@ -1,16 +1,28 @@
 body {
-  margin: 0;
-  padding: 0;
-  font-family: sans-serif;
-  padding: 4px;
-  background: #3457A9;
+	margin: 0;
+	padding: 0;
+	font-family: sans-serif;
+	padding: 4px;
+	background: #ffffff;
+	/*background-image: url("images/css3-gradient-pattern.png");*/
+	border: 8px solid #17e243;
+}
+
+#root {
+	background: rgb(119, 207, 210);
+}
+
+.App {
+	border: 1px solid #ee2424;
 }
 
 .main_container {
-max-width: 960px;
-width: 100%;
-margin: auto;
-
+	max-width: 960px;
+	width: 100%;
+	margin: auto;
+	box-shadow: #000000;
+	border: 4px solid #e5e907;
+	/*background: #3457A9;*/
 }
 
 .title {
@@ -19,9 +31,6 @@ margin: auto;
 	font-size: 72px;
 	margin-bottom: 40px;
 }
-.record_container {
-
-}
 
 .record_entry {
 	text-align: center;
@@ -29,34 +38,39 @@ margin: auto;
 	padding: 8px;
 }
 
-
-
 .ref_line {
-border: 1px solid #ffffff;
-height: 53px;
+	border: 1px solid #ffffff;
+	height: 53px;
 }
 
 .guess_line {
-background: white;
-height: 53px;
+	background: white;
+	height: 53px;
+}
+
+.bottom_container {
+	display: flex;
+	justify-content: space-evenly
 }
 
 .input_container {
-	color: white;
-	font-size: 30px;
+	font-size: 12px;
+	border: 4px solid #2427ee;
 }
+
+.stats_container {}
 
 #input {
 	background: #5171BB;
 	border: none;
 	font-size: 30px;
 	color: white;
-	margin-top: 40px;
+	/*margin-top: 40px;*/
 	padding: 4px;
 	display: inline-block;
 }
 
-.error_container {
+.input_error_container {
 	color: #77DE8E;
 }
 
@@ -67,24 +81,25 @@ height: 53px;
 
 .counter {
 	display: inline-block;
-		border: 1px solid #ff0000;
+	border: 1px solid #ff0000;
 }
 
 .top_scale, .bottom_scale {
 	font-size: 36px;
 }
+
 .top_scale .left {
-	width:50%;
-  text-align: left;
-  display: inline-block;
-  color: white;
+	width: 50%;
+	text-align: left;
+	display: inline-block;
+	color: white;
 }
 
 .top_scale .right {
-	width:50%;
-	  text-align: right;
-	  display: inline-block;
-	  color: white;
+	width: 50%;
+	text-align: right;
+	display: inline-block;
+	color: white;
 }
 
 .bottom_scale {
