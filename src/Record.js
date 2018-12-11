@@ -6,8 +6,8 @@ const Record = (props) => {
 	console.log('guess', props.guess);
 	return (
 		<tr>
-			<td>{props.actual}</td>
 			<td>{props.guess}</td>
+			<td>{props.actual}</td>
 			<td>{props.guess - props.actual}</td>
 		</tr>
 

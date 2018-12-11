@@ -88,6 +88,20 @@ body {
 	}
 }
 
+td {
+	padding: 8px;
+}
+
+
+table {
+	transition: height 4s;
+	color: white;
+}
+
+.guess_line {
+	transition: width 2s;
+}
+
 #input {
 	background: #5171BB;
 	border: none;

@@ -19,7 +19,7 @@ const Guesses = (props) => {
 		<div className="stats">
 			<div className="guess_list">
 				<table>
-					<td>Acutal</td><td>You</td><td>Off By:</td>
+					<tr><td>You</td><td>Actual</td><td>Off By:</td></tr>
 					{guesses.reverse()}
 				</table>
 			</div>
