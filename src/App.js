@@ -27,13 +27,14 @@ class App extends Component {
       <div className="App">
         <div className="title">MEASURE</div>
         <div className="main_container" id="main_container">
-          <div className="top_scale"><div className="left">0</div><div className="right">100</div></div>
-          <div className="ref_line" style={{ width: this.state.refLengthPx }}>
-            <div className="guess_line" style={{ width: (this.state.unknownLengthInUnits * this.state.pxPerGameUnit) + "px" }}></div>
+          <div id="bar_container">
+            <div className="top_scale"><div className="left">0</div><div className="right">100</div></div>
+            <div className="ref_line" style={{ width: this.state.refLengthPx }}>
+              <div className="guess_line" style={{ width: (this.state.unknownLengthInUnits * this.state.pxPerGameUnit) + "px" }}></div>
+            </div>
+            <div className="bottom_scale" style={{ width: (this.state.unknownLengthInUnits * this.state.pxPerGameUnit + 5) + "px" }}>x</div>
           </div>
-          <div className="bottom_scale" style={{ width: (this.state.unknownLengthInUnits * this.state.pxPerGameUnit + 5) + "px" }}>x</div>
-
-          <div className="bottom_container">
+          <div className="user_container">
             <div className="input_container">
               {this.state.controls_showInput &&
                 <div>
@@ -56,21 +57,23 @@ class App extends Component {
       </div>
     );
   }
-  handleWindowResize = () => {
-    this.setState({
-      refLengthPx: document.getElementById("main_container").offsetWidth,
-      pxPerGameUnit: document.getElementById("main_container").offsetWidth / 100
-    });
-  }
+
   componentDidMount() {
     this.setState(
       {
-        refLengthPx: document.getElementById("main_container").offsetWidth,
-        pxPerGameUnit: document.getElementById("main_container").offsetWidth / 100,
+        refLengthPx: document.getElementById("bar_container").offsetWidth,
+        pxPerGameUnit: document.getElementById("bar_container").offsetWidth / 100,
         unknownLengthInUnits: this.getNewLineLength(),
       }
     );
     window.addEventListener("resize", this.handleWindowResize);;
+  }
+
+  handleWindowResize = () => {
+    this.setState({
+      refLengthPx: document.getElementById("bar_container").offsetWidth,
+      pxPerGameUnit: document.getElementById("bar_container").offsetWidth / 100
+    });
   }
 
   onPlayAgain = () => {
@@ -140,8 +143,8 @@ class App extends Component {
     } else {
       this.setState({
         unknownLengthInUnits: this.getNewLineLength(),
-        refLengthPx: document.getElementById("main_container").offsetWidth,
-        pxPerGameUnit: document.getElementById("main_container").offsetWidth / 100,
+        refLengthPx: document.getElementById("bar_container").offsetWidth,
+        pxPerGameUnit: document.getElementById("bar_container").offsetWidth / 100,
       })
     }
   }
