@@ -4,7 +4,7 @@ body {
 	font-family: sans-serif;
 	padding: 4px;
 	background: #ffffff;
-	/*background-image: url("images/css3-gradient-pattern.png");*/
+	/*background-imagef: url("images/css3-gradient-pattern.png");*/
 	border: 8px solid #17e243;
 }
 
@@ -62,16 +62,30 @@ body {
 
 .input_container {
 	font-size: 12px;
-	border: 4px solid #2427ee;
-	flex: 1;
+	border: 4px solid #24ee50;
+	flex: 2;
 }
 
-.stats {
-	width:100%;
-}
 .stats_container {
 	flex: 1;
 	background: #cc0000;
+}
+
+.stats {
+	width: 100%;
+}
+
+@media screen and (max-width: 600px) {
+	.bottom_container {
+		display: block;
+	}
+	.input_container {
+		font-size: 12px;
+		border: 4px solid #000000;
+	}
+	.stats_container {
+		background: #cc0000;
+	}
 }
 
 #input {

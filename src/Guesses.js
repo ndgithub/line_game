@@ -1,9 +1,6 @@
 import React from 'react';
 import Record from './Record.js';
 
-
-class Guesses extends React.Component {
-
 const Guesses = (props) => {
 
 	const guesses = props.guessList.map((record, index) => {
@@ -17,7 +14,7 @@ const Guesses = (props) => {
 	}, 0)
 
 	let currentGuess = guesses.length < 5 ? guesses.length + 1 : 5;
-renderTable = () => {
+
 	return (
 		<div className="stats">
 			<div className="guess_list">
@@ -31,7 +28,7 @@ renderTable = () => {
 			<div className="total_error">{`Total Error: ${error}`}</div>
 			</div>
 			);
-		}
 		
 		
+}
 export default Guesses;
