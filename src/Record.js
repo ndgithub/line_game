@@ -5,6 +5,7 @@ const Record = (props) => {
 	console.log('actual', props.actual);
 	console.log('guess', props.guess);
 	return (
+<<<<<<< HEAD
 		<div className="record_container">
 
 			<div className="record_actual record_entry">
@@ -20,6 +21,15 @@ const Record = (props) => {
 			</div>
 		</div>
 	)
+=======
+		<tr>
+			<td>{props.actual}</td>
+			<td>{props.guess}</td>
+			<td>{props.guess - props.actual}</td>
+		</tr>
+
+		)
+>>>>>>> stats_table
 
 }
 

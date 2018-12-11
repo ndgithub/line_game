@@ -4,11 +4,15 @@ import Record from './Record.js';
 
 class Guesses extends React.Component {
 
+<<<<<<< HEAD
 
 	constructor(props) {
 		super(props);
 	}
 
+=======
+const Guesses = (props) => {
+>>>>>>> stats_table
 
 	const guesses = props.guessList.map((record, index) => {
 		return <Record actual={record.actual}
@@ -23,6 +27,7 @@ class Guesses extends React.Component {
 	let currentGuess = guesses.length < 5 ? guesses.length + 1 : 5;
 renderTable = () => {
 	return (
+<<<<<<< HEAD
 		<table>
 			<tr>
 				<td>Actual</td>
@@ -61,4 +66,21 @@ render() {
 
 
 
+=======
+		<div className="stats">
+			<div className="guess_list">
+				<table>
+					<td>Acutal</td><td>You</td><td>Off By:</td>
+					{guesses.reverse()}
+				</table>
+			</div>
+				
+			<div className="counter">{currentGuess + " out of 5"}</div>
+			<div className="total_error">{`Total Error: ${error}`}</div>
+			</div>
+			);
+		}
+		
+		
+>>>>>>> stats_table
 export default Guesses;
