@@ -5,6 +5,7 @@ const Record = (props) => {
 	console.log('actual', props.actual);
 	console.log('guess', props.guess);
 	return (
+		
 		<tr>
 			<td>{props.guess}</td>
 			<td>{props.actual}</td>

@@ -4,30 +4,27 @@ body {
 	font-family: sans-serif;
 	padding: 4px;
 	background: #ffffff;
-	/*background-imagef: url("images/css3-gradient-pattern.png");*/
-	
+	/*background-imagefasdfasdf: url("images/css3-gradient-pattern.png");*/
 }
 
 #root {
 	background: rgb(119, 207, 210);
 }
 
-.App {
-}
+.App {}
 
 .main_container {
 	max-width: 960px;
 	margin: auto;
 	box-shadow: #000000;
-	display: flex;
+	height: 100%;
 }
 
 #bar_container {
-	flex: 3;
 }
 
 .user_container {
-	flex: 1;
+	
 }
 
 .title {
@@ -49,13 +46,9 @@ body {
 
 .input_container {
 	font-size: 12px;
-	
-	
 }
 
-.stats_container {
-	
-}
+.stats_container {}
 
 .stats {
 	width: 100%;
@@ -74,9 +67,30 @@ body {
 	.input_container {
 		font-size: 12px;
 	}
-	.stats_container {
-		
-	}
+	.stats_container {}
+}
+
+.button {
+	color: white;
+	width: 80%;
+	height: 100%;
+	padding:12px;
+	background: rgb(158, 211, 214);
+}
+.button:hover {
+	
+	background: rgb(5, 188, 212);
+	color:white;
+}
+
+#guess_button {
+	
+}
+#play_button {
+	
+}
+#guess_button:hover {
+	
 }
 
 td {
@@ -87,11 +101,10 @@ table {
 	color: white;
 }
 
-.guess_line {
-}
+.guess_line {}
 
 #input {
-	background: #5171BB;
+	background:  rgb(147, 215, 218);
 	border: none;
 	font-size: 30px;
 	color: white;
@@ -99,7 +112,7 @@ table {
 	padding: 4px;
 	display: inline-block;
 	width: 40px;
-	float:left;
+	float: left;
 }
 
 .input_error_container {
@@ -108,7 +121,7 @@ table {
 
 .guess_list {
 	display: inline-block;
-	border: 1px solid #000000;
+	border: 1px solid #fff;
 }
 
 .counter {
@@ -131,6 +144,7 @@ table {
 	text-align: right;
 	display: inline-block;
 	color: white;
+	
 }
 
 .bottom_scale {
@@ -138,4 +152,6 @@ table {
 	color: white;
 }
 
-.bar_container {}
+.bar_container {
+	
+}
